@@ -1,0 +1,24 @@
+model{
+	
+  mod[1:7] <- vector.NJWn.model(7,N0,mu,sig,pmr)
+	
+	for (i in 1:7){
+		y[i] ~ dnorm(mod[i], tau)
+		ob[i] ~ dnorm(mod[i], tau)
+	}
+	
+	tau ~ dgamma(1, 0.01)
+	N0 ~ dunif(1,4)
+	mu ~ dunif(1,48)
+	sig ~ dunif(1,48)
+	pmr ~ dunif(1,30)
+	
+	SD <-1/sqrt(tau)
+
+	par[1]<-N0
+	par[2]<-mu
+	par[3]<-sig
+	par[4]<-pmr
+	par[5]<-tar
+	par[6]<-SD
+}
